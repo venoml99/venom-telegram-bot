@@ -95,7 +95,12 @@ def dice_handler(message):
         bot.send_message(message.chat.id, f"🎉 ربحت {gained} نقطة! مجموعك الآن: {score}")
     else:
         bot.send_message(message.chat.id, "❗ لم تربح نقاط هذه المرة، جرب مجددًا!")
-
+def is_subscribed(user_id):
+    try:
+        chat_member = bot.get_chat_member("@" + CHANNEL_USERNAME, user_id)
+        return chat_member.status in ['member', 'administrator', 'creator']
+    except:
+        return False
 # يمكنك إضافة بقية الأوامر مثل /xo و /quiz و /riddle بنفس النمط
 
 bot.infinity_polling()
